@@ -1,0 +1,32 @@
+name: simple_storage_flutter_blockchain
+description: A new Flutter project.
+
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.18.5 <3.0.0'
+
+dependencies:
+  cupertino_icons: ^1.0.2
+  flutter:
+    sdk: flutter
+  http: ^0.13.5
+  async: ^2.8.1
+  provider: ^6.0.4
+  web_socket_channel: ^2.2.0
+  web3dart: ^2.5.0
+  flutter_dotenv: ^5.0.2
+
+dev_dependencies:
+  flutter_lints: ^2.0.0
+  flutter_test:
+    sdk: flutter
+  test: ^1.21.4
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - src/artifacts/
+    - .env
