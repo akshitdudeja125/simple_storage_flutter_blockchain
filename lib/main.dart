@@ -41,7 +41,7 @@ class _HelloWorldState extends State<HelloWorld> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Hello World !"),
+        title: const Text("Hello World"),
         centerTitle: true,
       ),
       body: Container(
@@ -80,7 +80,6 @@ class _HelloWorldState extends State<HelloWorld> {
                         Padding(
                           padding: const EdgeInsets.only(top: 30),
                           child: ElevatedButton(
-                            // style: ElevatedButton.styleFrom(),
                             style: ElevatedButton.styleFrom(
                               foregroundColor: Colors.black,
                               backgroundColor: Colors.yellow,
@@ -93,7 +92,7 @@ class _HelloWorldState extends State<HelloWorld> {
                               _textFieldController.clear();
                             },
                             child: const Text(
-                              'Set Name',
+                              'Update',
                             ),
                           ),
                         )
