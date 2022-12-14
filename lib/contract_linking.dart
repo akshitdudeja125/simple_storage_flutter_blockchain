@@ -37,12 +37,13 @@ class ContractLinking extends ChangeNotifier {
   }
 
   initialSetup() async {
-    // establish a connection to the ethereum rpc node. The socketConnector
-    // property allows more efficient event streams over websocket instead of
-    // http-polls. However, the socketConnector property is experimental.
-    _client = Web3Client(_rpcURl, Client(), socketConnector: () {
-      return IOWebSocketChannel.connect(_wsURl).cast<String>();
-    });
+    _client = Web3Client(
+      _rpcURl,
+      Client(),
+      socketConnector: () {
+        return IOWebSocketChannel.connect(_wsURl).cast<String>();
+      },
+    );
 
     await getAbi();
     await getCredentials();
@@ -55,8 +56,9 @@ class ContractLinking extends ChangeNotifier {
     var jsonAbi = jsonDecode(abiStringFile);
     _abiCode = jsonEncode(jsonAbi["abi"]);
 
-    _contractAddress =
-        EthereumAddress.fromHex(jsonAbi["networks"]["5777"]["address"]);
+    _contractAddress = EthereumAddress.fromHex(
+      jsonAbi["networks"]["5777"]["address"],
+    );
   }
 
   Future<void> getCredentials() async {
@@ -83,12 +85,13 @@ class ContractLinking extends ChangeNotifier {
     isLoading = true;
     notifyListeners();
     await _client.sendTransaction(
-        _credentials,
-        Transaction.callContract(
-          contract: _contract,
-          function: _setName,
-          parameters: [nameToSet],
-        ));
+      _credentials,
+      Transaction.callContract(
+        contract: _contract,
+        function: _setName,
+        parameters: [nameToSet],
+      ),
+    );
     getName();
   }
 }
