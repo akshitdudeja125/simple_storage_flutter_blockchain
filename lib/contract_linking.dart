@@ -33,10 +33,10 @@ class ContractLinking extends ChangeNotifier {
   String? deployedName;
 
   ContractLinking() {
-    initialSetup();
+    _initialSetup();
   }
 
-  initialSetup() async {
+  _initialSetup() async {
     _client = Web3Client(
       _rpcURl,
       Client(),
@@ -45,12 +45,12 @@ class ContractLinking extends ChangeNotifier {
       },
     );
 
-    await getAbi();
-    await getCredentials();
-    await getDeployedContract();
+    await _getAbi();
+    await _getCredentials();
+    await _getDeployedContract();
   }
 
-  Future<void> getAbi() async {
+  Future<void> _getAbi() async {
     String abiStringFile =
         await rootBundle.loadString("src/artifacts/SimpleStorage.json");
     var jsonAbi = jsonDecode(abiStringFile);
@@ -61,11 +61,11 @@ class ContractLinking extends ChangeNotifier {
     );
   }
 
-  Future<void> getCredentials() async {
+  Future<void> _getCredentials() async {
     _credentials = EthPrivateKey.fromHex(_privateKey);
   }
 
-  Future<void> getDeployedContract() async {
+  Future<void> _getDeployedContract() async {
     _contract = DeployedContract(
         ContractAbi.fromJson(_abiCode, "SimpleStorage"), _contractAddress);
     _yourName = _contract.function("yourName");
